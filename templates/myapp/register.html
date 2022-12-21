@@ -1,0 +1,19 @@
+{% extends 'myapp/base.html' %}
+{% block body_block %}
+    {% if form %}
+            <div>
+                <form class="form" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="container">
+                        <div class="imgcontainer">
+                            <img class="avatar" src="https://www.uwindsor.ca/sites/default/files/uwindsor-new-logo-desktop_1024x768_1.jpg" alt="Avatar" class="avatar">
+                        </div>
+                        {{ form.as_p }}
+                        <button type="submit" class="hbar1">Register</button>
+                    </div>
+                </form>
+            <div>
+    {% else %}
+        <a class="lead" href="{% url "myapp:login" %}"> Login</a>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'myapp/base.html' %}
+{% block body_block %}
+    {% if client %}
+        {% if client.image %}
+        <div class="imgcontainer">
+            <img class="avatar" src="{{ client.image.url }}" alt="Avatar" class="avatar">
+        </div>
+        {% else %}
+            <div class="imgcontainer">
+                <img class="avatar" src="https://www.uwindsor.ca/sites/default/files/uwindsor-new-logo-desktop_1024x768_1.jpg" alt="Avatar" class="avatar">
+            </div>
+        {% endif %}
+        <div>
+                <form class="form" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="container">
+                        {{ form.as_p }}
+                        <button type="submit" class="hbar1">Update</button>
+                    </div>
+                </form>
+            <div>
+    {% else %}
+        <strong> You are not a registered client!!</strong>
+    {% endif %}
+    <script>
+        $(document).ready(function () {
+           $('#orders').DataTable()
+        });
+    </script>
+{% endblock %}

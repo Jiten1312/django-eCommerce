@@ -1,0 +1,45 @@
+{% extends 'myapp/base.html' %}
+{% block body_block %}
+    {% if client %}
+{#        <h3>{{ client.first_name }} {{ client.last_name }}</h3>#}
+        {% if client.image %}
+        <div class="imgcontainer">
+            <img class="avatar" src="{{ client.image.url }}" alt="Avatar" class="avatar">
+        </div>
+        {% endif %}
+        {% if orders %}
+            {% if orders|length > 0 %}
+                <h3> Your Orders</h3>
+                <table id="orders">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for order in orders %}
+                        <tr class="width-80">
+                            <td></td>
+                            <td>{{ order.product.name }}</td>
+                            <td>{{ order.product.price }}</td>
+                            <td>{{ order.get_order_status_display }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+            {% else %}
+                <strong>No Order Placed</strong>
+        {% endif %}
+    {% else %}
+        <strong> You are not a registered client!!</strong>
+    {% endif %}
+    <script>
+        $(document).ready(function () {
+           $('#orders').DataTable()
+        });
+    </script>
+{% endblock %}

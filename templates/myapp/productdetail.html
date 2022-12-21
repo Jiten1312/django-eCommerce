@@ -1,0 +1,23 @@
+{% extends 'myapp/base.html' %}
+{% block title %}
+    Product Detail
+{% endblock %}
+{% block body_block %}
+    {% if product.available == True %}
+        <h2>{{ product.name }}</h2>
+        <p>Interested: {{ product.interested }}</p>
+        <p>Price: ${{ product.price }}</p>
+    {% else %}
+        <h2>Product not Available</h2>
+        <p>Sorry! The Product is not available.</p>
+    {% endif %}
+    <form method="post">
+        {% csrf_token%}
+        <div class="form-group">
+        {{ form}}
+        </div>
+        <div class="flex">
+        <br/>
+        <button type="submit">Submit</button>
+        </div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'myapp/base.html' %}
+{% block body_block %}
+<p>Last Login: {{ last_login }}</p>
+{% if cat_list %}
+    <h2>Categories</h2>
+    <table id="catTable">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Warehouse</th>
+            </tr>
+        <thead>
+        <tbody>
+            {% for cat in cat_list %}
+            <tr>
+                <td></td>
+                <td> <a href="{% url "myapp:part2_detail" cat.id %}"> {{ cat.name }}</a></td>
+                <td> {{ cat.warehouse }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        $(document).ready(function () {
+           $('#catTable').DataTable()
+        });
+    </script>
+
+{% endif %}
+{% endblock %}

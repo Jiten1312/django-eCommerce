@@ -1,0 +1,27 @@
+<html>
+<body>
+
+<h1>Showing all prodcuts of the category mentioned by the user in the URL :</h1>
+<p>Location is : {{category.warehouse}}</p>
+<table>
+<tr>
+  <th>Name</th>
+  <th>Price</th>
+  <th>Stock</th>
+  <th>Available</th>
+  <th>Description</th>
+</tr>
+{% for product in products %}
+<tr>
+  <td> {{ product.name }}</td>
+  <td> {{ product.price }}</td>
+  <td> {{ product.stock }}</td>
+  <td> {{ product.available }}</td>
+  <td> {{ product.description }}</td>
+</tr>
+{% endfor %}
+</table>
+<p><a href="{% url "myapp:new_index" %}">Index page</a></p>
+<p><a href="{% url "myapp:new_about" %}">About page</a></p>
+</body>
+</html>

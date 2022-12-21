@@ -1,0 +1,35 @@
+{% extends 'myapp/base.html' %}
+{% block body_block %}
+<h2>Showing all prodcuts from the {{ category.name }} category:</h2>
+<p>Location is : {{category.warehouse}}</p>
+<table id="prodTable">
+<thead>
+<tr>
+    <th></th>
+  <th>Name</th>
+  <th>Price</th>
+  <th>Stock</th>
+  <th>Available</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+{% for product in products %}
+<tr>
+    <td></td>
+    <td> <a href="{% url "myapp:productdetail" product.id %}"> {{ product.name }}</a></td>
+    <td> {{ product.price }}</td>
+    <td> {{ product.stock }}</td>
+    <td> {{ product.available }}</td>
+    <td> {{ product.description }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+    <script>
+        $(document).ready(function () {
+           $('#prodTable').DataTable()
+        });
+    </script>
+{% endblock %}

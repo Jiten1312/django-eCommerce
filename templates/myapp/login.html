@@ -1,0 +1,29 @@
+{% extends 'myapp/base.html' %}
+{% block body_block %}
+    <div>
+        <form class="form" method="post">
+            {% csrf_token%}
+
+            <div class="container">
+                <div class="imgcontainer">
+                    <img class="avatar" src="https://www.uwindsor.ca/sites/default/files/uwindsor-new-logo-desktop_1024x768_1.jpg" alt="Avatar" class="avatar">
+                </div>
+                <div>
+                    <label for="exampleInputUserName" class="form-label">Username</label>
+                    <input type="text" name="username" class="form-control" />
+                </div>
+                <div>
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" />
+                </div>
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
+                <button type="submit" class="hbar1">Login</button>
+            </div>
+            <div class="row mb-4">
+                <div class="col">
+                    <a href="{% url 'myapp:reset_password' %}">Forgot Password</a>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

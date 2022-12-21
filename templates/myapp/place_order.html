@@ -1,0 +1,53 @@
+{% extends 'myapp/base.html' %}
+{% block title %}
+    Products
+{% endblock %}
+{% block body_block %}
+    <h2>Products Available</h2>
+    {% if prodlist %}
+        <table id="prodTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Available</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in prodlist %}
+                <tr>
+                    <td> {{ product.name }}</td>
+                    <td> {{ product.price }}</td>
+                    <td> {{ product.stock }}</td>
+                    <td> {{ product.available }}</td>
+                    <td> {{ product.description }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    {% else %}
+        <h2>No Products are available</h2>
+    {% endif %}
+    <h2>Place Order</h2>
+    <form method="post">
+        {% csrf_token%}
+        {{ form.as_p }}
+        <div class="flex">
+        <br/>
+        <button type="submit">Submit</button>
+        </div>
+    </form>
+    <br/>
+
+    <script>
+        $(document).ready(function () {
+           $('#prodTable').DataTable({
+               pageLength:5,
+               lengthMenu: [[5, 10, 20], [5, 10, 20]]
+           })
+        });
+    </script>
+
+{% endblock %}
